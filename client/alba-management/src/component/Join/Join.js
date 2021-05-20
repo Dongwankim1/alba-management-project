@@ -8,7 +8,7 @@ const Join = () =>{
     return (
        <div className="JoinContainer">
            <div className="JoinFormContainer log-in-container">
-                <form>
+                <form className="JoinForm">
                     <h1>Login</h1>
                     <div className="JoinSocialContainer">
            
@@ -20,8 +20,8 @@ const Join = () =>{
                     <input type="email" placeholder="Email"></input>
                     <input type="password" placeholder="Password"/>
                     <Link>Forgot your password?</Link>
-                    <button>Sign In</button>
-                    <button>Sign Up</button>
+                    <button className="JoinBtn">Sign In</button>
+                    <button className="JoinBtn"><Link to="/signup">Sign Up</Link></button>
                 </form>
 
            </div>
