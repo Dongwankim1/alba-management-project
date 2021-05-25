@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
@@ -7,6 +6,13 @@ const app = express();
 const corsOptions={
     origin: "http://localhost:8081"
 }
+const db = require("./app/models");
+const Role = db.role;
+
+db.sequelize.sync({force:true}).then(()=>{
+    console.log("Drop and Resync DB");
+    initial();
+})
 
 app.use(cors(corsOptions));
 
@@ -24,3 +30,17 @@ app.listen(PORT,()=>{
 })
 
 
+function initial(){
+    Role.create({
+        id:1,
+        name:"user"
+    });
+    Role.create({
+        id:2,
+        name:"moderator"
+    })
+    Role.create({
+        id:3,
+        name:"admin"
+    })
+}
