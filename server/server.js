@@ -6,7 +6,7 @@ const app = express();
 const corsOptions={
     origin: "http://localhost:8081"
 }
-const db = require("./app/models");
+const db = require("./models");
 const Role = db.role;
 
 db.sequelize.sync({force:true}).then(()=>{
@@ -23,6 +23,9 @@ app.use(express.urlencoded({extended:true}));
 app.get("/",(req,res)=>{
     res.json({message: "Welcome to bezkoder application."})
 })
+
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT,()=>{
