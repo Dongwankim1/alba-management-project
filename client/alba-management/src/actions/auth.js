@@ -31,7 +31,7 @@ export const register = (username,email,password) =>(dispatch) =>{
                 type:REGISTER_FAIL,
             });
             dispatch({
-                type:SET_MEESAGE,
+                type:SET_MESSAGE,
                 payload:message
             })
             return Promise.reject();
