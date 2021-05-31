@@ -1,5 +1,5 @@
 import{
-    REGISERT_SUCCESS,
+    REGISTER_SUCCESS,
     REGISTER_FAIL,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
@@ -12,9 +12,9 @@ const initialState = user ?{isLoggedIn:true,user} : {isLoggedIn:false,user:null}
 
 export default function (state = initialState,action){
     const {type,payload} = action;
-
+    console.log('a11a',action)
     switch(type){
-        case REGISERT_SUCCESS:
+        case REGISTER_SUCCESS:
             return{
                 ...state,
                 isLoggedIn:false,

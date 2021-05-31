@@ -16,7 +16,9 @@ exports.signup = (req,res)=>{
         email:req.body.email,
         password:bcrypt.hashSync(req.body.password,8)
     }).then(user=>{
+        console.log('asdqwd11122222124141111');
         if(req.body.roles){
+            console.log('asdqwd111222221111525');
             Role.findAll({
                 where:{
                     name:{
@@ -24,7 +26,9 @@ exports.signup = (req,res)=>{
                     }
                 }
             }).then(roles=>{
+                console.log('asdqwd111222221111');
                 user.setRoles(roles).then(()=>{
+                    console.log('asdqwd1111111');
                     res.send({message:"User was registered successfully!"});
                 })
             })

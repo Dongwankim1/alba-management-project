@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SignUp.css';
 import {useDispatch,useSelector} from "react-redux";
 
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import { register } from "../../actions/auth"
 
 
@@ -12,6 +12,10 @@ const SignUp = () =>{
     const [Name,setName] = useState("");
     const [confirmPassword,setconfirmPassword] = useState("");
     const [birth,setBirth] = useState("");
+    const [successful,setSuccessful] = useState(false);
+
+    const {message} = useSelector(state=>state.message);
+    const dispatch = useDispatch();
 
     const onEmailHandler = (e) =>{
         setEmail(e.currentTarget.value);
@@ -35,16 +39,21 @@ const SignUp = () =>{
     const onSubmitHandler = (e)=>{
         e.preventDefault();
 
+        setSuccessful(false);
         if(Password !==confirmPassword){
             return alert('비밀번호와 비밀번호 확인은 같아야합니다.');
         }
 
-        let body ={
-            email:Email,
-            password:Password,
-            birth:birth,
-            name:Name
-        }
+
+
+        dispatch(register(Name,birth,Email,Password)).then(()=>{
+            console.log("asdqwd1212");
+            setSuccessful(true);
+            <Redirect to="/"/>
+        }).catch(()=>{
+            console.log("asdqwd1211122");
+            setSuccessful(false);
+        })
 
 
     }
@@ -79,7 +88,12 @@ const SignUp = () =>{
         </div>
 
         <button type="submit" className="SignUpbtn">Sign Up</button>
-        
+        {message && (
+            <div className="form-group">
+              <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
+                {message}
+              </div>
+            </div>)}
         <p className="forgot-password text-right">
             Already registered <Link to="/">sign in?</Link>
         </p>
