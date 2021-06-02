@@ -32,8 +32,10 @@ checkDuplicateUsernameOrEmail = (req,res,next)=>{
 }
 
 checkRolesExisted = (req,res,next) =>{
+
     if(req.body.roles){
         for(let i=0;i<req.body.roles.length;i++){
+            console.log(req.body);
             if(!ROLES.includes(req.body.roles[i])){
                 res.status(400).send({
                     message: "Failed! Role does not exist = "+req.body.roles[i]

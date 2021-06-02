@@ -10,9 +10,10 @@ import {
 
 import AuthService from "../services/auth.service";
 
-export const register = (username,birth,email,password) =>(dispatch) =>{
-    return AuthService.register(username,birth,email,password).then(
+export const register = (username,birth,email,password,roles) =>(dispatch) =>{
+    return AuthService.register(username,birth,email,password,roles).then(
         (response)=>{
+            debugger;
             dispatch({
                 type:REGISTER_SUCCESS
             });
@@ -20,6 +21,7 @@ export const register = (username,birth,email,password) =>(dispatch) =>{
                 type:SET_MESSAGE,
                 payload:response.data.message,
             })
+            debugger;
             return Promise.resolve();;
         },(error)=>{
             const message =(error.response &&

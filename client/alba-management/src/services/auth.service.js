@@ -17,15 +17,14 @@ const logout = () =>{
     localStorage.removeItem("user");
 }
 
-const register = (username,birth,email,password) =>{
+const register = (username,birth,email,password,roles) =>{
     return axios.post(`${API_URL}/signup`,{
-        username,birth,email,password
+        username,birth,email,password,roles
     }).then((response)=>{
-        console.log('asfasf',response);
-        alert("생성완료")
+        return response;
     }).catch((error)=>{
         console.log(error);
-        alert("생성에러");
+        return error;
     })
 }
 

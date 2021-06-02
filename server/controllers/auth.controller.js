@@ -10,15 +10,15 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req,res)=>{
+    console.log("1111111111111111111");
     User.create({
         username:req.body.username,
         birth:req.body.birth,
         email:req.body.email,
         password:bcrypt.hashSync(req.body.password,8)
     }).then(user=>{
-        console.log('asdqwd11122222124141111');
+        console.log(req.body.roles);
         if(req.body.roles){
-            console.log('asdqwd111222221111525');
             Role.findAll({
                 where:{
                     name:{
@@ -26,9 +26,7 @@ exports.signup = (req,res)=>{
                     }
                 }
             }).then(roles=>{
-                console.log('asdqwd111222221111');
                 user.setRoles(roles).then(()=>{
-                    console.log('asdqwd1111111');
                     res.send({message:"User was registered successfully!"});
                 })
             })

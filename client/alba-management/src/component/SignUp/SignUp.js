@@ -6,7 +6,7 @@ import {Link, Redirect} from 'react-router-dom';
 import { register } from "../../actions/auth"
 
 
-const SignUp = () =>{
+const SignUp = ({history}) =>{
     const [Email,setEmail]  = useState("");
     const [Password,setPassword] = useState("");
     const [Name,setName] = useState("");
@@ -46,10 +46,11 @@ const SignUp = () =>{
 
 
 
-        dispatch(register(Name,birth,Email,Password)).then(()=>{
-            console.log("asdqwd1212");
-            setSuccessful(true);
-            <Redirect to="/"/>
+        dispatch(register(Name,birth,Email,Password,['user'])).then(()=>{
+
+            //setSuccessful(true);
+            console.log(history);
+            history.push('/');
         }).catch(()=>{
             console.log("asdqwd1211122");
             setSuccessful(false);
