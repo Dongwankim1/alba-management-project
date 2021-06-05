@@ -7,12 +7,12 @@ import{
 } from "../actions/types";
 
 const user = JSON.parse(localStorage.getItem("user"));
-
+console.log("userr",user);
 const initialState = user ?{isLoggedIn:true,user} : {isLoggedIn:false,user:null};
-
+console.log("us111err",initialState);
 export default function (state = initialState,action){
     const {type,payload} = action;
-    console.log('a11a',action)
+    console.log("-=------------")
     switch(type){
         case REGISTER_SUCCESS:
             return{
@@ -43,7 +43,7 @@ export default function (state = initialState,action){
                 user:null
             };
         default:
-            return false;
+            return state;
     
     
     }
